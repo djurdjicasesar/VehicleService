@@ -1,0 +1,54 @@
+﻿@page
+@model VehicleService.Pages.Vehicles.CreateModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Add New Vehicle</h2>
+<br />
+<form method="post">
+    <div class="border white">
+        <input hidden asp-for="VehicleMakes.UserId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="VehicleMakes.Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="VehicleMakes.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="VehicleMakes.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="VehicleMakes.Abrv"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="VehicleMakes.Abrv" class="form-control" />
+            </div>
+            <span asp-validation-for="VehicleMakes.Abrv" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="VehicleMakes.Year"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="VehicleMakes.Year" class="form-control" />
+            </div>
+            <span asp-validation-for="VehicleMakes.Year" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_CreateBackButton" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

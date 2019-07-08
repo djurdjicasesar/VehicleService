@@ -1,0 +1,61 @@
+﻿@page
+@model VehicleService.Pages.Vehicles.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<br />
+<div class="border white">
+    <h2>Edit Vehicle</h2>
+    <br />
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="VehicleMake.Id" />
+        <input type="hidden" asp-for="VehicleMake.UserId" />
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="VehicleMake.Name" class="control-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="VehicleMake.Name" class="form-control" />
+            </div>
+                <span asp-validation-for="VehicleMake.Name" class="text-danger"></span>
+            </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="VehicleMake.Year" class="control-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="VehicleMake.Year" class="form-control" />
+            </div>
+                <span asp-validation-for="VehicleMake.Year" class="text-danger"></span>
+            </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="VehicleMake.Abrv" class="control-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="VehicleMake.Abrv" class="form-control" />
+            </div>
+                <span asp-validation-for="VehicleMake.Abrv" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="submit" class="btn btn-info form-control" value="Update" />
+                        </div>
+                        <div class="col-6">
+                            <a asp-page="Index" asp-route-userId="@Model.VehicleMake.UserId" class="btn btn-success form-control">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+       
+    
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,43 @@
+﻿@page
+@model VehicleService.Pages.ServiceTypes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@using VehicleService.Utility
+<br />
+<div class="border white">
+    <h2 class="text-info">Service Type Details</h2>
+    <hr />
+    <input type="hidden" asp-for="ServiceType.Id" />
+    <div class="row">
+        <div class="col-2 font-weight-bold">
+            <label asp-for="ServiceType.Name"></label>
+        </div>
+        <div class="col-5">
+            @Html.DisplayFor(m => m.ServiceType.Name)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 font-weight-bold">
+            <label asp-for="ServiceType.Price"></label>
+        </div>
+        <div class="col-5">
+            @Html.DisplayFor(m => m.ServiceType.Price) $
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-5 offset-2">
+            @if (User.IsInRole(SD.Admin))
+            {
+                <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@Model.ServiceType.Id">Edit</a>
+            }
+            <a class="btn btn-info" asp-page="./Index">Back</a>
+        </div>
+    </div>
+</div>
+
+

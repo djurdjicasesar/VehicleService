@@ -1,0 +1,108 @@
+﻿@page
+@model VehicleService.Pages.Vehicles.IndexModel
+@using VehicleService.Utility
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<partial name="_StatusMessage" model="Model.Message" />
+
+<div class="container white">
+    <h2 class="text-info">Vehicles Records</h2>
+    <div class="card">
+        <div class="card-header bg-secondary text-light row container">
+            <div class="col-6">
+                <img src="~/images/cars-01-512.png"style="width:50px" />
+            </div>
+            <div class="col-6 text-right">
+                @if (User.IsInRole(SD.Admin)) { 
+                <a asp-page="/Users/Index" class="btn btn-info btn-sm">Back to Users</a>
+}
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row" style="padding-bottom:40px;padding-top:20px">
+                <div class="col-md-3">
+                    <p>
+                        <a asp-page="Create" asp-route-userId="@Model.VehicleMakeVM.UserObj.Id" class="btn btn-success form-control">Add New Vehicle</a>
+                    </p>
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="VehicleMakeVM.UserObj.Name"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(m => m.VehicleMakeVM.UserObj.Name)
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="VehicleMakeVM.UserObj.PhoneNumber"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(m => m.VehicleMakeVM.UserObj.PhoneNumber)
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="VehicleMakeVM.UserObj.Email"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(m => m.VehicleMakeVM.UserObj.Email)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            @if (Model.VehicleMakeVM.VehicleMakes.Count() == 0)
+            {
+                <p>
+                    No Vehicles Found!
+                </p>
+            }
+            else
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            @Html.DisplayNameFor(m => m.VehicleMakeVM.VehicleMakes.FirstOrDefault().Abrv)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.VehicleMakeVM.VehicleMakes.FirstOrDefault().Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.VehicleMakeVM.VehicleMakes.FirstOrDefault().Year)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.VehicleMakeVM.VehicleMakes)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Abrv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Year)
+                        </td>
+                        <td></td>
+                        <td>
+                            <div class="btn-group float-right" role="group">
+                                    <a class="btn btn-warning text-white" asp-page="Edit" asp-route-Id="@item.Id">Edit</a>&nbsp;
+                                    <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@item.Id">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
+</div>
+

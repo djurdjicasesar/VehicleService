@@ -1,0 +1,66 @@
+﻿@page
+@model VehicleService.Pages.Users.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<div class="white">
+    <br />
+    <h2 class="text-info">Are you sure You want to delete this Customer?</h2>
+    <hr />
+    <input asp-for="ApplicationUser.Id" hidden />
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    <label asp-for="ApplicationUser.Name" class="text-info"></label>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => m.ApplicationUser.Name)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    <label asp-for="ApplicationUser.Email" class="text-info"></label>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => m.ApplicationUser.Email)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    <label asp-for="ApplicationUser.PhoneNumber" class="text-info"></label>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => m.ApplicationUser.PhoneNumber)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    <label asp-for="ApplicationUser.City" class="text-info"></label>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => m.ApplicationUser.City)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    <label asp-for="ApplicationUser.PostalCode" class="text-info"></label>
+                </div>
+                <div class="col-sm-5">
+                    @Html.DisplayFor(m => m.ApplicationUser.PostalCode)
+                </div>
+            </div>
+        </div>
+        <form method="post">
+            <div class="row">
+                <div class="col-5 offset-2">
+                    <input type="hidden" asp-for="ApplicationUser.Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a class="btn btn-info" asp-page="./Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+</div>
+
